@@ -7,11 +7,11 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import java.util.ArrayList;
 
-public class CustomerSteps {
+public class PaymentSteps {
 
     PaymentService paymentService = new PaymentService();
     String token, mid, amount;
-
+    
     @When("We add a payment with token {string}")
     public void weAddAPaymentWithToken(String token) {
         this.token = token;
@@ -50,6 +50,4 @@ public class CustomerSteps {
         }
     }
 }
-
-
 
