@@ -12,21 +12,22 @@ import java.util.ArrayList;
 
 public class PaymentService {
 
-	//building the client and the target
+	// build the client and the target
 	Client client = ClientBuilder.newClient();
 	WebTarget target = client.target("http://localhost:8080/payment");
 
 	/**
 	 * Add payment
 	 *
-	 * @param costumerId
-	 * @param merchantId
+	 * @param token
+	 * @param mid
 	 * @param amount
 	 */
-	public void add(String costumerId, String merchantId, String amount) {
-		Payment payment = new Payment(costumerId, merchantId, amount);
-		Response response  = target
-				.request(MediaType.APPLICATION_JSON)
+	public void add(String token, String mid, String amount) {
+		Payment payment = new Payment(token, mid, amount);
+
+		// actually no response at current stage
+		Response response  = target.request(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(payment, MediaType.APPLICATION_JSON));
 	}
@@ -38,3 +39,4 @@ public class PaymentService {
 		return target.path("list").request().get(new GenericType<ArrayList<Payment>>() {});
 	}
 }
+
